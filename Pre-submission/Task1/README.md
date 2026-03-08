@@ -14,13 +14,13 @@ MEMEBRS NAME (SID) :
 
 *The System inculding :*
 1. Book Management
-- Add, remove, search, and display books
+  - Add, remove, search, and display books
 2. Students and Stuff Management
-- Register members, view member details (Name, SID, Students or stuff)
+  - Register members, view member details (Name, SID, Students or stuff)
 3. Borrowing System
-- Borrow books, return books, track due dates
+  - Borrow books, return books, track due dates
 4. Availability Tracking
-- Check if a book is available or borrowed
+  - Check if a book is available or borrowed
 
 **TASK 1**
 [ Concepts will be Used ]
