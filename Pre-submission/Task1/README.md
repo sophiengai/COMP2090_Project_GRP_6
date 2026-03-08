@@ -29,8 +29,3 @@ MEMEBRS NAME (SID) :
 - Encapsulation
 - Polymorphism
 - Abstraction
-
-Preliminary code
-
-
-
