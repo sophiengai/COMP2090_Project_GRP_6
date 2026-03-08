@@ -7,9 +7,8 @@ MEMEBRS NAME (SID) :
 2. LAM Wing Hei Sophie 14265664 
 3. POON Po Yee  13884023
 
-[ Project Introduction ]
+## Project Introduction
 
-**TASK 2**
-[ Chosen topic ]
+### TASK 2 [ Chosen topic ]
 - Data structure : matrix
 - Algorithm : cocktail sort
