@@ -11,5 +11,5 @@ MEMEBRS NAME (SID) :
 
 **TASK 2**
 [ Chosen topic ]
-- Data structure: matrix
-- Algorithm: cocktail sort
+- Data structure : matrix
+- Algorithm : cocktail sort
