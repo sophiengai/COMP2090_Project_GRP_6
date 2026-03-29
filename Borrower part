@@ -1,0 +1,64 @@
+from datetime import datetime, timedelta
+
+class Book:
+    def __init__(self, book_id, title):
+        self.book_id = book_id
+        self.title = title
+        self.is_available = True
+        self.due_date = None  
+
+class Borrower:
+    def __init__(self, name):
+        self.name = name
+        self.my_books = []
+
+    def find_book(self, library_list, keyword):
+        for book in library_list:
+            if keyword.lower() in book.title.lower():
+                print(f"Found: {book.title} (ID: {book.book_id})")
+
+    def borrow_book(self, library_list, book_id):
+        target_book = None
+        for book in library_list:
+            if book.book_id == book_id:
+                target_book = book
+                break
+        
+        if target_book and target_book.is_available:
+            
+            target_book.is_available = False
+            
+            target_book.due_date = datetime.now() + timedelta(days=14)
+            
+            
+            self.my_books.append(target_book)
+            print(f"Borrowed: {target_book.title} (Due: {target_book.due_date.strftime('%Y-%m-%d')})")
+        else:
+            print("Book unavailable or not found")
+
+    def return_book(self, book_id):
+        target_book = None
+        for book in self.my_books:
+            if book.book_id == book_id:
+                target_book = book
+                break
+
+        if target_book:
+            
+            target_book.is_available = True
+            target_book.due_date = None 
+            
+            
+            self.my_books.remove(target_book)
+            print(f"Returned: {target_book.title}")
+        else:
+            print("You do not have this book")
+
+    def renew_book(self, book_id):
+        for book in self.my_books:
+            if book.book_id == book_id:
+                
+                book.due_date = book.due_date + timedelta(days=7)
+                print(f"Renewed: {book.title} (New Due: {book.due_date.strftime('%Y-%m-%d')})")
+                return
+        print("Cannot renew (book not borrowed)")
