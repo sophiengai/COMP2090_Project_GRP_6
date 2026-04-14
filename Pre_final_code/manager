@@ -1,1 +1,162 @@
+import data
 
+class Manager:
+    def __init__(self):
+        self.borrowers = []
+        for i in range(len(data.borrowers)):
+            self.borrowers.append(data.borrowers[i])
+        self.books = []
+        for j in range(len(data.books)):
+            self.books.append(data.books[j])
+
+    def add_books(self):
+        
+        newbook = {
+            "isbn": input("isbn:"),
+            "title": input("booktitle:"),
+            "author": input("author:"),
+            "total_copies": input("total_copies:"),
+            "available_copies": input("avaliable_copies:"),
+            "location": input("location:")
+        }
+        self.books.append(newbook)
+
+    def delete_book_avaliable(self):
+        print("Please enter the whole title of the book you want to delete: ")
+        founder = input()
+        found = []
+        for book in data.books:
+            if founder in book["title"].lower():
+                target_book = book
+                found.append(book)
+        if len(found) > 1:
+            print("Incorrect title")
+            self.delete_book_avaliable()
+        elif len(found) == 1:
+            self.delete_book(target_book)
+        if book not in data.books:
+            print("Book unavailable or not found")
+
+    def delete_book(self, target_book):
+        data.books.remove(target_book)
+        print(f"Book '{target_book.title}' deleted")
+
+    def update_book_avaliable(self):
+        print("Please enter the whole title of the book you want to update: ")
+        founder = input()
+        found = []
+        for book in data.books:
+            if founder in book["title"].lower():
+                target_book = book
+                found.append(book)
+        if len(found) > 1:
+            print("Incorrect book title")
+            self.update_book_avaliable()
+        elif len(found) == 1:
+            self.update_book(target_book)
+        if book not in data.books:
+            print("Book unavailable or not found")
+
+    def update_book(self, target_book):
+        print("\n" + "-"*40)
+        print("    Update choice Menu")
+        print("-"*40)
+        print("1. Isbn")
+        print("2. Title")
+        print("3. Author")
+        print("4. Total copies")
+        print("5. Avaliable copies")
+        print("6. Location")
+        print("7. Back to Main Menu")
+        
+        choice = input("Please select (1-7): ")
+        
+        if choice == "1":
+            target_book.update({"isbn": input()})
+        elif choice == "2":
+            target_book.update({"title": input()})
+        elif choice == "3":
+            target_book.update({"author": input()})
+        elif choice == "4":
+            target_book.update({"total_copies": int(input())})
+        elif choice == "5":
+            target_book.update({"avaliable_copies": int(input())})
+        elif choice == "6":
+            target_book.update({"location": input()})
+        elif choice == "7":
+            pass
+        else:
+            print("Please enter the correct choice: ")
+            self.update_book(target_book)
+        print(f"Book '{target_book.title}' updated")
+
+    def add_borrower(self):
+        
+        new_borrower = {
+            "borrower_id": input("Borrower id:"),
+            "name": input("Name:"),
+            "phone": input("Phone:"),
+        }
+
+        data.borrowers.append(new_borrower)
+
+    def delete_borrower(self, target_borrower):
+        for borrower in data.borrowers:
+            target_borrower = borrower
+        data.borrowers.remove(target_borrower)
+        print(f"Borrower '{target_borrower.id}' deleted")
+
+    def modify_borrower(self, target_borrower):
+        for borrower in data.borrowers:
+            target_borrower = borrower
+            print("\n" + "-"*40)
+        print("    Update choice Menu")
+        print("-"*40)
+        print("1. Borrower id")
+        print("2. Name")
+        print("3. Phone")
+        print("4. Back to Main Menu")
+        
+        choice = input("Please select (1-4): ")
+        
+        if choice == "1":
+            target_borrower.update({"borrower_id": input()})
+        elif choice == "2":
+            target_borrower.update({"name": input()})
+        elif choice == "3":
+            target_borrower.update({"phone": input()})
+        elif choice == "4":
+            pass
+        else:
+            print("Please enter the correct choice: ")
+            self.modify_borrower(target_borrower)
+        
+        print(f"Borrower '{target_borrower.borrower_id}' modified")
+
+    def manage_borrower(self):
+        print("\n" + "-"*40)
+        print("    Borrower management Menu")
+        print("-"*40)
+        print("1. Add borrower")
+        print("2. Delete borrower")
+        print("3. Modify borrower")
+        print("4. Back to Main Menu")
+        choice = input("Please select (1-4): ")
+        if choice =="1":
+            self.add_borrower()
+        elif choice == "2" or choice == "3":
+            print("Please enter a borrower id to continue: ")
+            id = input("")
+            if id in data.borrowers:
+                print("\n" + "-"*40)
+                print("    Borrower management Menu")
+                print("    Managing borrower", id)
+                print("-"*40)
+            if choice == "2":
+                self.delete_borrower()
+            else:
+                self.modify_borrower()
+        elif choice == "4":
+            pass
+        else:
+            self.manage_borrower()
