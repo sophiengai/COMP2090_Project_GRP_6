@@ -9,11 +9,6 @@ class Book:
         self.is_available = True
         self.due_date = None 
 
-        if self.avaliable_copies <= 0:
-            self.is_avaliable = False
-        else:
-            self.is_available = True
-
     def borrow(self):
         self.available_copies -= 1
         if self.available_copies <= 0:
@@ -25,3 +20,4 @@ class Book:
             self.available_copies += 1
             if self.available_copies >= 1:
                 self.is_available = True
+
