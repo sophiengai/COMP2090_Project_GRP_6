@@ -61,6 +61,7 @@ borrowers = [
     {"borrower_id": "B003", "name": "Cheung Tsz Hin", "phone": "93456789"}
 ]
 
+
 def find_book_by_isbn(isbn):
     for book in books:
         if book["isbn"] == isbn:
@@ -75,3 +76,4 @@ def find_borrower_by_id(borrower_id):
 
 def get_borrow_records(borrower_id):
     return [r for r in records if r["borrower_id"] == borrower_id]
+
