@@ -1,0 +1,56 @@
+import data
+from borrower import Borrower
+from manager import Manager
+
+class Menu:
+    def main_menu(self):
+        while True:
+            print("\n" + "="*40)
+            print("    Library Management System")
+            print("="*40)
+            print("1. Manager Login")
+            print("2. Borrower Login")
+            print("3. Exit System")
+            print("-"*40)
+            
+            choice = input("Please select (1-3): ")
+            
+            if choice == "1":
+                Menu.manager_login()
+            elif choice == "2":
+                Menu.borrower_login()
+            elif choice == "3":
+                print("Thank you for using the system. Goodbye!")
+                break
+            else:
+                print("Invalid choice. Please try again.")
+
+    def manager_login(user_id="manager"):
+        print("\n--- Manager Login ---")
+        manager_password = input("Enter manager password: ")
+        #Manaegr password = "admin123"
+        if manager_password == "admin123":
+            print("Login successful!")
+            manager = Manager(user_id)
+            manager.menu(user_id)
+        else:
+            print("Incorrect password!")
+            input("Press Enter to continue...")
+
+    def borrower_login():
+        print("\n--- Borrower Login ---")
+        borrower_id = input("Enter borrower ID (e.g., B001): ")
+        
+        borrower = data.find_borrower_by_id(borrower_id)
+        if borrower:
+            print(f"Welcome, {borrower['name']}!")
+            borrower = Borrower(borrower_id)
+            borrower.menu(borrower_id)
+        else:
+            print("Borrower ID not found!")
+            input("Press Enter to continue...")
+
+if __name__ == "__main__":
+    main = Menu()
+    main.main_menu()
+    
